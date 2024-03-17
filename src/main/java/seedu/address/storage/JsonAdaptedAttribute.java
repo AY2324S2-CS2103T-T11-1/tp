@@ -48,4 +48,5 @@ class JsonAdaptedAttribute {
             return new StringAttribute(type, value);
         }
     }
+
 }

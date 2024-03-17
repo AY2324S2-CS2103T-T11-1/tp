@@ -1,15 +1,20 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.attribute.Attribute;
+import seedu.address.model.person.attribute.NameAttribute;
+import seedu.address.model.person.attribute.StringAttribute;
+import seedu.address.model.tag.Tag;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonAdaptedPersonAttrTest {
 
@@ -86,6 +91,23 @@ public class JsonAdaptedPersonAttrTest {
 
         // Verify that IllegalValueException is thrown when converting to model type
         assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
+    }
+
+    @Test
+    public void constructor_validPerson_success() {
+        // Create a Person with attributes and tags
+        Attribute[] attributes = new Attribute[2];
+        attributes[0] = new NameAttribute("Name", "John Doe");
+        attributes[1] = new StringAttribute("Email", "john@example.com");
+
+
+        Person person = new Person(attributes);
+
+        // Convert the Person to JsonAdaptedPersonAttr
+        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(person);
+
+        // Check if attributes are converted correctly
+        assertEquals(2, jsonAdaptedPersonAttr.getAttributes().size());
     }
 
 }

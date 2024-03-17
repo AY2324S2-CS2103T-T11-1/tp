@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.attribute.Attribute;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class JsonAdaptedAttributeTest {
 
@@ -67,6 +67,28 @@ public class JsonAdaptedAttributeTest {
 
         // Verify that IllegalValueException is thrown when converting to model type
         assertThrows(IllegalValueException.class, jsonAdaptedAttribute::toModelType);
+    }
+
+    @Test
+    public void constructor_nullAttribute_throwsNullPointerException() {
+        try {
+            new JsonAdaptedAttribute(null);
+            fail("Expected NullPointerException to be thrown");
+        } catch (NullPointerException e) {
+            // Expected exception
+        }
+    }
+
+    @Test
+    public void toModelType_validAttribute_success() {
+        JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute("Name", "John Doe");
+        try {
+            Attribute attribute = jsonAdaptedAttribute.toModelType();
+            assertEquals("name", attribute.getName());
+            assertEquals("John Doe", attribute.getValueAsString());
+        } catch (IllegalValueException e) {
+            fail("Unexpected IllegalValueException thrown");
+        }
     }
 
 }
