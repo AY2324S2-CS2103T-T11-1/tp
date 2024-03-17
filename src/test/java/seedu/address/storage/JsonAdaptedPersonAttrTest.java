@@ -1,9 +1,10 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.attribute.Attribute;
 import seedu.address.model.person.attribute.NameAttribute;
 import seedu.address.model.person.attribute.StringAttribute;
-import seedu.address.model.tag.Tag;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class JsonAdaptedPersonAttrTest {
 
