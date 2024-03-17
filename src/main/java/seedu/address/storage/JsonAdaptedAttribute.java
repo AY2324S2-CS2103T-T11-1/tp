@@ -39,7 +39,7 @@ class JsonAdaptedAttribute {
      * @throws IllegalValueException if there were any data constraints violated in the adapted attribute.
      */
     public Attribute toModelType() throws IllegalValueException {
-        if (type == null || value == null) {
+        if (type == null || value == null || type.isEmpty() || value.isEmpty()) {
             throw new IllegalValueException("Invalid attribute type or value in JSON.");
         }
         if (type.equals("Name") || type.equals("name")) {

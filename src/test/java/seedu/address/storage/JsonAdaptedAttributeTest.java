@@ -42,4 +42,31 @@ public class JsonAdaptedAttributeTest {
         assertThrows(IllegalValueException.class, jsonAdaptedAttribute::toModelType);
     }
 
+    @Test
+    public void toModelType_emptyType_throwsIllegalValueException() {
+        // Create JsonAdaptedAttribute with empty type
+        JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute(null, VALID_VALUE);
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedAttribute::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyValue_throwsIllegalValueException() {
+        // Create JsonAdaptedAttribute with empty value
+        JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute(VALID_TYPE, "");
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedAttribute::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidType_throwsIllegalValueException() {
+        // Create JsonAdaptedAttribute with invalid type
+        JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute("", VALID_VALUE);
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedAttribute::toModelType);
+    }
+
 }

@@ -56,4 +56,36 @@ public class JsonAdaptedPersonAttrTest {
         assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
     }
 
+    @Test
+    public void toModelType_nullTags_throwsIllegalValueException() {
+        // Create JsonAdaptedPersonAttr with null tags
+        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(VALID_ATTRIBUTES, null);
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyTags_throwsIllegalValueException() {
+        // Create JsonAdaptedPersonAttr with empty tags list
+        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(VALID_ATTRIBUTES, new ArrayList<>());
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidAttribute_throwsIllegalValueException() {
+        // Create JsonAdaptedAttribute with invalid type
+        JsonAdaptedAttribute jsonAdaptedAttribute = new JsonAdaptedAttribute("", VALID_ATTRIBUTE_VALUE);
+        List<JsonAdaptedAttribute> invalidAttributes = new ArrayList<>();
+        invalidAttributes.add(jsonAdaptedAttribute);
+
+        // Create JsonAdaptedPersonAttr with invalid attributes
+        JsonAdaptedPersonAttr jsonAdaptedPersonAttr = new JsonAdaptedPersonAttr(invalidAttributes, VALID_TAGS);
+
+        // Verify that IllegalValueException is thrown when converting to model type
+        assertThrows(IllegalValueException.class, jsonAdaptedPersonAttr::toModelType);
+    }
+
 }
