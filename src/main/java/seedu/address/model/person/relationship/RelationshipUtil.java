@@ -55,4 +55,14 @@ public class RelationshipUtil {
     public ArrayList<Relationship> getRelationshipsTracker() {
         return relationshipsTracker;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Relationship relationship : relationshipsTracker) {
+            sb.append(relationship.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

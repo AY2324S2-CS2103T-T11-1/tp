@@ -63,6 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        relationships.getRelationshipsTracker().addAll(newData.getRelationshipList());
     }
 
     //// person-level operations
@@ -108,6 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("relationships", relationships)
                 .toString();
     }
 
@@ -123,7 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addRelationship(Relationship toAdd) {
         relationships.addRelationship(toAdd);
-    };
+    }
     public void deleteRelationship(Relationship toDelete) {
         relationships.deleteRelationship(toDelete);
     };
