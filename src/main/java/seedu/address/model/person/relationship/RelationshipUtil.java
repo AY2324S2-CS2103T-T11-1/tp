@@ -1,5 +1,7 @@
 package seedu.address.model.person.relationship;
 
+import seedu.address.model.person.Person;
+
 import java.util.ArrayList;
 
 /**
@@ -93,6 +95,20 @@ public class RelationshipUtil {
         for (Relationship relationship : relationshipsTracker) {
             sb.append(relationship.toString());
             sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String getImmediateRelationshipsAsString(Person person) {
+        StringBuilder sb = new StringBuilder();
+        for (Relationship relationship : relationshipsTracker) {
+            if (relationship.getPerson1().equals(person) || relationship.getPerson2().equals(person)) {
+                // roleName of personName
+                sb.append(relationship.getRoleDescriptor(person.getUuid()));
+                sb.append(" of ");
+                sb.append(relationship.getPerson1().equals(person) ? relationship.getPerson2()
+                        : relationship.getPerson1());
+            }
         }
         return sb.toString();
     }

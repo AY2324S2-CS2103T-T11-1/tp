@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.relationship.RelationshipUtil;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -36,7 +37,12 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        attributes.setText(displayAttributes());
+        RelationshipUtil relationUtil = new RelationshipUtil();
+        attributes.setText(
+                displayAttributes()
+                + "\n"
+                + relationUtil.getImmediateRelationshipsAsString(person)
+                );
         uuid.setText(person.getUuid().toString().substring(32, 36));
     }
 
