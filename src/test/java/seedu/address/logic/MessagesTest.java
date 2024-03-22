@@ -16,6 +16,12 @@ class MessagesTest {
     }
 
     @Test
+    public void getErrorMessageForDuplicatePrefixes_assertDuplicatePrefixesLength() {
+        assertEquals(Messages.MESSAGE_DUPLICATE_FIELDS,
+                Messages.getErrorMessageForDuplicatePrefixes(new Prefix("")));
+    }
+
+    @Test
     public void format() {
         Person person = new Person(new Attribute[0]);
         assertEquals("Details:\n"
