@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+actor User as user USER_COLOR
+participant "UI" as ui UI_COLOR
+participant "AddRelationshipCommand" as cmd LOGIC_COLOR
+participant "Model" as model MODEL_COLOR
+participant "Relationship" as rel ATTRIBUTE_COLOR
+
+user -[USER_COLOR]> ui : execute(addRelation)
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> cmd : new(originUuid, targetUuid, descriptor)
+activate cmd LOGIC_COLOR
+
+cmd -[LOGIC_COLOR]> model : getFullUuid(originUuid)
+activate model MODEL_COLOR
+
+model --[MODEL_COLOR]> cmd : fullOriginUuid
+deactivate model
+
+cmd -[LOGIC_COLOR]> model : getFullUuid(targetUuid)
+activate model MODEL_COLOR
+
+model --[MODEL_COLOR]> cmd : fullTargetUuid
+deactivate model
+
+cmd -[LOGIC_COLOR]> rel : new(fullOriginUuid, fullTargetUuid, descriptor)
+activate rel ATTRIBUTE_COLOR
+
+rel --[ATTRIBUTE_COLOR]> cmd : toAdd
+deactivate rel
+
+cmd --[LOGIC_COLOR]> ui : new CommandResult(MESSAGE_ADD_RELATIONSHIP_SUCCESS)
+deactivate cmd
+
+ui --[UI_COLOR]> user : display success message
+deactivate ui
+
+@enduml
