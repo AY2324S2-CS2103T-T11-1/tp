@@ -85,16 +85,36 @@ public class PersonTest {
         assertEquals(VALID_NAME_BOB, BOB.getName().toString());
     }
     @Test
+    public void getName_noName() { // to deprecate
+        Person person = new Person(new Attribute[0]);
+        assertEquals("no name", person.getName().toString());
+    }
+    @Test
     public void getPhone() {
         assertEquals(VALID_PHONE_BOB, BOB.getPhone().toString());
+    }
+    @Test
+    public void getPhone_noPhone() { // to deprecate
+        Person person = new Person(new Attribute[0]);
+        assertEquals("00000000", person.getPhone().toString());
     }
     @Test
     public void getEmail() {
         assertEquals(VALID_EMAIL_BOB, BOB.getEmail().toString());
     }
     @Test
+    public void getEmail_noEmail() { // to deprecate
+        Person person = new Person(new Attribute[0]);
+        assertEquals("noemail@noemail.noemail", person.getEmail().toString());
+    }
+    @Test
     public void getAddress() {
         assertEquals(VALID_ADDRESS_BOB, BOB.getAddress().toString());
+    }
+    @Test
+    public void getAddress_noAddress() { // to deprecate
+        Person person = new Person(new Attribute[0]);
+        assertEquals("no address", person.getAddress().toString());
     }
     @Test
     public void getUuidString() {
