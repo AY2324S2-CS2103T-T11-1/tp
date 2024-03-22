@@ -52,6 +52,5 @@ public class AddCommandParserTest {
         } catch (ParseException e) {
             assert e.getMessage().equals("Invalid command format! \n" + AddCommand.MESSAGE_USAGE);
         }
-
     }
 }
