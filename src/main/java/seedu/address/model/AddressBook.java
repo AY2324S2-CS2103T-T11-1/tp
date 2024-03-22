@@ -138,6 +138,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getExistingRelationship(Relationship toGet) {
         return relationships.getExistingRelationship(toGet);
     }
+    public String getImmediateRelationshipsAsString(Person person) {
+        return relationships.getImmediateRelationshipsAsString(person);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {
