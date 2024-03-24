@@ -1,8 +1,8 @@
 package seedu.address.model.person.relationship;
 
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a utility class for managing the relationships associated with a person.
