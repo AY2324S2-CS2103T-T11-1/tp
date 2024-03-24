@@ -42,7 +42,7 @@ public class PersonCard extends UiPart<Region> {
                 displayAttributes()
                 + "\n"
                 + relationUtil.getImmediateRelationshipsAsString(person)
-                );
+        );
         uuid.setText(person.getUuid().toString().substring(32, 36));
     }
 
